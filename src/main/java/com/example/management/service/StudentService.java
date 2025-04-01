@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class StudentService {
 		this.studentRepository = studentRepository;
 	}
 
+	@CachePut(value = "students", key = "#student.id")
 	public Student saveStudent(Student student) {
 		return studentRepository.save(student);
 	}
@@ -31,10 +33,12 @@ public class StudentService {
 		return studentRepository.findById(id);
 	}
 
+	@CacheEvict(value = "students", key = "#id")
 	public void deleteStudent(Long id) {
 		studentRepository.deleteById(id);
 	}
 
+	@CachePut(value = "students", key = "#id")
 	public Student updateStudent(Long id, Student studentDetails) {
 		Optional<Student> student = studentRepository.findById(id);
 
