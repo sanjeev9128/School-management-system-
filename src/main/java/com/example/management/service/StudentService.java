@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.example.management.entity.Student;
@@ -25,7 +26,7 @@ public class StudentService {
 		return studentRepository.findAll();
 	}
 
-	@CacheEvict(value = "student", key = "#id") 
+	@Cacheable(value = "student", key = "#id")
 	public Optional<Student> getStudentById(Long id) {
 		return studentRepository.findById(id);
 	}
@@ -33,7 +34,6 @@ public class StudentService {
 	public void deleteStudent(Long id) {
 		studentRepository.deleteById(id);
 	}
-
 
 	public Student updateStudent(Long id, Student studentDetails) {
 		Optional<Student> student = studentRepository.findById(id);

@@ -25,11 +25,13 @@ public class StudentController {
 
 	@PostMapping
 	public Student createStudent(@RequestBody Student student) {
+		System.out.println("save is call***********");
 		return studentService.saveStudent(student);
 	}
 
 	@GetMapping
 	public List<Student> getAllStudents() {
+		System.out.println("call get all student");
 		return studentService.getAllStudents();
 	}
 

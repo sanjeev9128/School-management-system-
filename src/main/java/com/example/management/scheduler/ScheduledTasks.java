@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ScheduledTasks {
-	@Scheduled(cron = "0 0 12 * * ?") 
+	@Scheduled(cron = "0 0 12 * * ?")
 	public void scheduleTask() {
 		System.out.println("Scheduled task executed at: " + System.currentTimeMillis());
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.example.management.entity.Teacher;
@@ -26,7 +27,9 @@ public class TeacherService {
 		return teacherRepository.findAll();
 	}
 
-	@CacheEvict(value = "teacher", key = "#id") 
+	
+	
+	@Cacheable(value = "teacher", key = "#id")
 	public Optional<Teacher> getTeacherById(Long id) {
 		return teacherRepository.findById(id);
 	}
